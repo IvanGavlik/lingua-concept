@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cijenik – Lingua Concept</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <span>Lingua Concept</span>
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html#o-nama">O nama</a></li>
+        <li><a href="index.html#usluge">Usluge</a></li>
+        <li><a href="cijenik.html">Cijenik</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+      </ul>
+
+      <div class="nav__actions">
+	  <!--
+        <a href="cijenik.html" class="btn btn--dark">Cijenik</a>-->
+      </div>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== CIJENIK / PRICING ===== -->
+  <section class="cijenik">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" style="    font-weight: 600;" >Cijenik</h2>
+        <p class="section-desc">
+          Odaberite paket koji najbolje odgovara va&scaron;im potrebama.
+          Transparentne cijene bez skrivenih tro&scaron;kova.
+        </p>
+      </div>
+
+      <div class="cijenik__grid">
+        <div class="cijenik__card">
+          <div class="cijenik__icon cijenik__icon--1">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <h3>Osnovni</h3>
+          <p>Idealno za manje projekte i pojedince koji trebaju brze i pouzdane usluge prijevoda.</p>
+          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
+        </div>
+
+        <div class="cijenik__card">
+          <div class="cijenik__icon cijenik__icon--2">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3>Profesionalni</h3>
+          <p>Za tvrtke i organizacije koje zahtijevaju redovite prijevode s garancijom kvalitete.</p>
+          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
+        </div>
+
+        <div class="cijenik__card">
+          <div class="cijenik__icon cijenik__icon--3">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7"></circle>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+            </svg>
+          </div>
+          <h3>Premium</h3>
+          <p>Kompletno rje&scaron;enje za zahtjevne klijente s prioritetnom podr&scaron;kom i najkra&cacute;im rokovima.</p>
+          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p>&copy; 2025 Lingua Concept. Sva prava pridr&zcaron;ana.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
