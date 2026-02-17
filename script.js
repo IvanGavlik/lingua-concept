@@ -1,6 +1,5 @@
 /* =============================================
-   AAVE CLONE – LEARNING PROJECT
-   Interactive behaviour with vanilla JS
+   LINGUA CONCEPT – Interactive behaviour
    ============================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -31,29 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---------- FAQ accordion ---------- */
-  document.querySelectorAll(".faq__question").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = btn.parentElement;
-      const answer = item.querySelector(".faq__answer");
-      const isOpen = item.classList.contains("active");
-
-      // Close all
-      document.querySelectorAll(".faq__item").forEach((faq) => {
-        faq.classList.remove("active");
-        faq.querySelector(".faq__answer").style.maxHeight = null;
-        faq.querySelector(".faq__question").setAttribute("aria-expanded", "false");
-      });
-
-      // Open clicked (if it was closed)
-      if (!isOpen) {
-        item.classList.add("active");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        btn.setAttribute("aria-expanded", "true");
-      }
-    });
-  });
-
   /* ---------- Scroll-triggered animations ---------- */
   const observerOptions = {
     threshold: 0.15,
@@ -72,12 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tag elements for animation
   const animateSelectors = [
     ".builder-card",
-    ".about__card",
-    ".feature-card",
-    ".stat-card",
-    ".security-card",
-    ".eco-logo",
-    ".faq__item",
     ".governance__inner",
   ];
 
@@ -89,68 +59,98 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---------- Counter animation for stats ---------- */
-  const statValues = document.querySelectorAll(".stat-card__value");
+  /* ---------- Perks horizontal drag slider ---------- */
+  const slider = document.querySelector(".about-perks__scroll");
+  if (slider) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
+    slider.addEventListener("mousedown", (e) => {
+      isDown = true;
+      slider.classList.add("is-dragging");
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener("mouseleave", () => {
+      isDown = false;
+      slider.classList.remove("is-dragging");
+    });
+
+    slider.addEventListener("mouseup", () => {
+      isDown = false;
+      slider.classList.remove("is-dragging");
+    });
+
+    slider.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    /* Auto-scroll */
+    const scrollSpeed = 1;
+    let paused = false;
+
+    function autoScroll() {
+      if (!paused) {
+        slider.scrollLeft += scrollSpeed;
+        if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+          slider.scrollLeft = 0;
         }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  statValues.forEach((el) => counterObserver.observe(el));
-
-  function animateCounter(el) {
-    const target = parseFloat(el.dataset.target);
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-    const duration = 1600;
-    const start = performance.now();
-
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease-out cubic
-      const ease = 1 - Math.pow(1 - progress, 3);
-      const current = (target * ease).toFixed(target % 1 === 0 ? 0 : 1);
-      el.textContent = `${prefix}${current}${suffix}`;
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
       }
+      requestAnimationFrame(autoScroll);
     }
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(autoScroll);
+
+    // Pause on hover / drag / touch — use the whole slider wrapper
+    const sliderWrapper = slider.closest(".about-perks__slider");
+    const perksSection = slider.closest(".about-perks");
+
+    if (sliderWrapper) {
+      sliderWrapper.addEventListener("mouseenter", () => { paused = true; });
+      sliderWrapper.addEventListener("mouseleave", () => { paused = false; isDown = false; slider.classList.remove("is-dragging"); });
+    }
+    slider.addEventListener("touchstart", () => { paused = true; }, { passive: true });
+    slider.addEventListener("touchend", () => { paused = false; });
+
+    /* Arrow buttons — manual smooth scroll */
+    const leftBtn = document.querySelector(".about-perks__arrow--left");
+    const rightBtn = document.querySelector(".about-perks__arrow--right");
+    const cardWidth = 280 + 16; // card flex-basis + gap
+
+    function smoothScrollBy(distance) {
+      paused = true;
+      const start = slider.scrollLeft;
+      const target = start + distance;
+      const duration = 350;
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const ease = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        slider.scrollLeft = start + distance * ease;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (leftBtn) {
+      leftBtn.addEventListener("click", () => smoothScrollBy(-cardWidth));
+    }
+    if (rightBtn) {
+      rightBtn.addEventListener("click", () => smoothScrollBy(cardWidth));
+    }
   }
-
-  /* ---------- Newsletter form (demo) ---------- */
-  const form = document.getElementById("newsletterForm");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const input = form.querySelector("input");
-    const email = input.value.trim();
-
-    if (email) {
-      input.value = "";
-      const btn = form.querySelector("button");
-      btn.textContent = "Subscribed!";
-      btn.style.opacity = "0.7";
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.textContent = "Sign Up";
-        btn.style.opacity = "1";
-        btn.disabled = false;
-      }, 2500);
-    }
-  });
 
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
