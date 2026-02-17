@@ -50,77 +50,63 @@
   <section class="usluge-section">
     <div class="container">
       <h2 class="usluge-section__title">Prevoditeljske usluge</h2>
-      <p class="usluge-section__subtitle">Neovjereni prijevodi — mađarski, makedonski, slovenski, srpski</p>
-      <div class="usluge-grid">
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--teal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Osobni dokumenti</h3>
-          <p class="usluge-card__desc">Pisani prijevod osobnih dokumenata</p>
+     
+
+      <p class="usluge-section__subtitle" style="font-weight: 700; color: var(--text-heading);">Neovjereni prijevodi — mađarski, makedonski, slovenski, srpski</p>
+      <div class="usluge-table usluge-table--grid" id="uslugePills">
+        <!-- Dokumenti i pravo -->
+        <div class="usluge-table__group">
+          <span class="usluge-table__group-label usluge-table__group-label--purple">Dokumenti i pravo</span>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Osobni dokumenti</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Pravo</span>
+            <span class="usluge-table__detail">kupoprodajni ugovori, sudske presude, rješenja</span>
+          </div>
         </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Pravo</h3>
-          <p class="usluge-card__desc">Kupoprodajni ugovori, sudske presude, rješenja i sl.</p>
+        <!-- Mediji i kreativa -->
+        <div class="usluge-table__group">
+          <span class="usluge-table__group-label usluge-table__group-label--orange">Mediji i kreativa</span>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Publicistika</span>
+            <span class="usluge-table__detail">novinski članci</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Turizam</span>
+            <span class="usluge-table__detail">brošure, oglasi, letci, prezentacije</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Marketing</span>
+            <span class="usluge-table__detail">slogani, copy za kampanje, društvene mreže</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Književnost</span>
+          </div>
         </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--orange">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Medicina</h3>
-          <p class="usluge-card__desc">Povijest bolesti i ostala medicinska dokumentacija</p>
+        <!-- Stručni tekstovi -->
+        <div class="usluge-table__group">
+          <span class="usluge-table__group-label usluge-table__group-label--teal">Stručni tekstovi</span>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Medicina</span>
+            <span class="usluge-table__detail">povijest bolesti</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Ekonomija</span>
+            <span class="usluge-table__detail">financijska izvješća</span>
+          </div>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Tehnika</span>
+            <span class="usluge-table__detail">upute za korištenje, jamstveni listovi</span>
+          </div>
         </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Ekonomija</h3>
-          <p class="usluge-card__desc">Financijska izvješća i poslovna dokumentacija</p>
-        </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--teal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Publicistika</h3>
-          <p class="usluge-card__desc">Novinski članci i publicistički tekstovi</p>
-        </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Tehnika</h3>
-          <p class="usluge-card__desc">Upute za korištenje uređaja, jamstveni listovi i sl.</p>
-        </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--orange">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Turizam</h3>
-          <p class="usluge-card__desc">Turističke brošure, oglasi, letci, prezentacije i sl.</p>
-        </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Marketing</h3>
-          <p class="usluge-card__desc">Slogani, copy za kampanje, tekstovi za društvene mreže i sl.</p>
-        </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--teal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Književnost</h3>
-          <p class="usluge-card__desc">Prijevod književnih djela</p>
-        </div>
-        <div class="usluge-card usluge-card--muted">
-          <span class="usluge-card__icon usluge-card__icon--muted">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-          </span>
-          <h3 class="usluge-card__title">Ostali prijevodi</h3>
-          <p class="usluge-card__desc">Prilagođavamo usluge vašim specifičnim zahtjevima</p>
+        <!-- Ostalo -->
+        <div class="usluge-table__group">
+          <span class="usluge-table__group-label usluge-table__group-label--muted">Ostalo</span>
+          <div class="usluge-table__row">
+            <span class="usluge-table__name">Ostali prijevodi</span>
+            <span class="usluge-table__detail">prilagođavamo usluge vašim specifičnim zahtjevima</span>
+          </div>
         </div>
       </div>
     </div>
@@ -130,20 +116,25 @@
   <section class="usluge-section usluge-section--alt">
     <div class="container">
       <h2 class="usluge-section__title">Ostale jezične usluge</h2>
-      <div class="usluge-grid usluge-grid--2">
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--teal">
+      <div class="cijenik-norms">
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__icon cijenik-norms__icon--purple">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           </span>
-          <h3 class="usluge-card__title">Lektura tekstova</h3>
-          <p class="usluge-card__desc">Jezična i stilska provjera tekstova radi osiguravanja jasnoće i dosljednosti</p>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">Lektura tekstova</span>
+            <span class="cijenik-norms__dir">Jezična i stilska provjera tekstova radi osiguravanja jasnoće i dosljednosti</span>
+          </div>
         </div>
-        <div class="usluge-card">
-          <span class="usluge-card__icon usluge-card__icon--purple">
+        <div class="cijenik-norms__separator"></div>
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__icon cijenik-norms__icon--teal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </span>
-          <h3 class="usluge-card__title">Korektura tekstova</h3>
-          <p class="usluge-card__desc">Završna provjera pravopisnih i tipografskih pogrešaka prije objave</p>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">Korektura tekstova</span>
+            <span class="cijenik-norms__dir">Završna provjera pravopisnih i tipografskih pogrešaka prije objave</span>
+          </div>
         </div>
       </div>
     </div>

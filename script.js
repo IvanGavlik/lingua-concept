@@ -152,6 +152,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* ---------- Pill staggered fade-in on scroll ---------- */
+  const pillsContainer = document.getElementById("uslugePills");
+  if (pillsContainer) {
+    const groups = pillsContainer.querySelectorAll(".usluge-table__group");
+    const pillObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          groups.forEach((group, i) => {
+            group.style.animationDelay = `${i * 80}ms`;
+            group.classList.add("pill-visible");
+          });
+          pillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    pillObserver.observe(pillsContainer);
+  }
+
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {

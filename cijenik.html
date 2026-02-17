@@ -27,10 +27,7 @@
         <li><a href="index.html#kontakt">Kontakt</a></li>
       </ul>
 
-      <div class="nav__actions">
-	  <!--
-        <a href="cijenik.html" class="btn btn--dark">Cijenik</a>-->
-      </div>
+      <div class="nav__actions"></div>
 
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -38,53 +35,218 @@
     </nav>
   </header>
 
-  <!-- ===== CIJENIK / PRICING ===== -->
-  <section class="cijenik">
+  <!-- ===== HERO ===== -->
+  <section class="usluge-hero">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" style="    font-weight: 600;" >Cijenik</h2>
-        <p class="section-desc">
-          Odaberite paket koji najbolje odgovara va&scaron;im potrebama.
-          Transparentne cijene bez skrivenih tro&scaron;kova.
-        </p>
-      </div>
+      <h1 class="usluge-hero__title">Cijene usluga</h1>
+      <p class="usluge-hero__desc">
+        Transparentno formiranje cijena bez skrivenih troškova. Saznajte kako obračunavamo prijevode, lekturu i ostale usluge.
+      </p>
+    </div>
+  </section>
 
-      <div class="cijenik__grid">
-        <div class="cijenik__card">
-          <div class="cijenik__icon cijenik__icon--1">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            </svg>
-          </div>
-          <h3>Osnovni</h3>
-          <p>Idealno za manje projekte i pojedince koji trebaju brze i pouzdane usluge prijevoda.</p>
-          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
+  <!-- ===== OBRAČUN PRIJEVODA ===== -->
+  <section class="usluge-section">
+    <div class="container">
+      <h2 class="usluge-section__title">Obračun prijevoda</h2>
+      <p class="usluge-section__subtitle">Osnova za obračun pisanog prijevoda je autorska kartica.</p>
+      <div class="usluge-grid usluge-grid--2">
+        <div class="usluge-card">
+          <span class="usluge-card__icon usluge-card__icon--teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <h3 class="usluge-card__title">Autorska kartica</h3>
+          <p class="usluge-card__desc">1 autorska kartica = 1500 znakova s prazninama</p>
         </div>
-
-        <div class="cijenik__card">
-          <div class="cijenik__icon cijenik__icon--2">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </div>
-          <h3>Profesionalni</h3>
-          <p>Za tvrtke i organizacije koje zahtijevaju redovite prijevode s garancijom kvalitete.</p>
-          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
-        </div>
-
-        <div class="cijenik__card">
-          <div class="cijenik__icon cijenik__icon--3">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="7"></circle>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-            </svg>
-          </div>
-          <h3>Premium</h3>
-          <p>Kompletno rje&scaron;enje za zahtjevne klijente s prioritetnom podr&scaron;kom i najkra&cacute;im rokovima.</p>
-          <a href="#" class="link-arrow">Saznaj vi&scaron;e →</a>
+        <div class="usluge-card">
+          <span class="usluge-card__icon usluge-card__icon--purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </span>
+          <h3 class="usluge-card__title">Obračunska pravila</h3>
+          <p class="usluge-card__desc">Najmanja obračunska jedinica je 1 kartica. Za tekstove veće od 1, a manje od 2 kartice, količina se zaokružuje na ½ kartice.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== NORMA PREVOĐENJA ===== -->
+  <section class="usluge-section usluge-section--alt">
+    <div class="container">
+      <h2 class="usluge-section__title">Norma prevođenja</h2>
+      <p class="usluge-section__subtitle">Uobičajena dnevna norma prevođenja ovisi o smjeru prijevoda.</p>
+      <div class="cijenik-norms">
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__number cijenik-norms__number--teal">6</span>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">kartica dnevno</span>
+            <span class="cijenik-norms__dir">Strani jezik → hrvatski</span>
+          </div>
+        </div>
+        <div class="cijenik-norms__separator"></div>
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__number cijenik-norms__number--purple">5</span>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">kartica dnevno</span>
+            <span class="cijenik-norms__dir">Hrvatski → strani jezik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAKTORI KOJI UTJEČU NA CIJENU ===== -->
+  <section class="usluge-section cijenik-factors">
+    <div class="container">
+      <div class="cijenik-factors__layout">
+        <div class="cijenik-factors__left">
+          <h2 class="usluge-section__title">Faktori koji utječu na cijenu</h2>
+          <p class="usluge-section__subtitle" style="margin-bottom: 0;">Na konačnu cijenu prijevoda utječu sljedeći faktori — od jezične kombinacije i složenosti teksta do rokova isporuke i posebnih zahtjeva za oblikovanje.</p>
+        </div>
+        <div class="cijenik-factors__right">
+          <div class="usluge-card">
+            <span class="usluge-card__icon usluge-card__icon--teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </span>
+            <h3 class="usluge-card__title">Jezična kombinacija</h3>
+            <p class="usluge-card__desc">Npr. prijevod s mađarskog na hrvatski u pravilu je skuplji od prijevoda sa srpskog na hrvatski.</p>
+          </div>
+          <div class="usluge-card">
+            <span class="usluge-card__icon usluge-card__icon--purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <h3 class="usluge-card__title">Rok isporuke</h3>
+            <p class="usluge-card__desc">Kraći rokovi mogu utjecati na povećanje cijene prijevoda.</p>
+          </div>
+          <div class="usluge-card">
+            <span class="usluge-card__icon usluge-card__icon--orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <h3 class="usluge-card__title">Zahtjevnost teksta</h3>
+            <p class="usluge-card__desc">Stručna terminologija, složenost vokabulara i specifičnost teme.</p>
+          </div>
+          <div class="usluge-card">
+            <span class="usluge-card__icon usluge-card__icon--blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </span>
+            <h3 class="usluge-card__title">Oblikovanje teksta</h3>
+            <p class="usluge-card__desc">Oblikovanje i/ili uređenje teksta prema zahtjevima klijenta.</p>
+          </div>
+          <div class="usluge-card">
+            <span class="usluge-card__icon usluge-card__icon--teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </span>
+            <h3 class="usluge-card__title">Grafičko uređenje</h3>
+            <p class="usluge-card__desc">Rad s tablicama, slikama, grafikonima i sl.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HITNI PRIJEVOD ===== -->
+  <section class="usluge-section usluge-section--alt">
+    <div class="container">
+      <h2 class="usluge-section__title">Hitni prijevod</h2>
+      <div class="cijenik-highlight">
+        <div class="cijenik-highlight__header">
+          <span class="cijenik-stat cijenik-stat--accent">+50%</span>
+          <div>
+            <h3 class="usluge-card__title">Hitni (žurni) prijevod</h3>
+            <p class="usluge-card__desc">Hitni prijevod naplaćuje se 50% više u odnosu na uobičajenu cijenu. Hitnim prijevodom smatra se prijevod koji se izrađuje u znatno kraćem roku od uobičajenog, najčešće zbog kratkog roka predaje.</p>
+          </div>
+        </div>
+        <div class="cijenik-highlight__list">
+          <p class="usluge-card__desc" style="font-weight: 600; color: var(--text-heading); margin-bottom: 12px;">U praksi to najčešće znači:</p>
+          <ul class="about-services__list">
+            <li class="about-services__item">
+              <span class="about-services__dot about-services__dot--orange"></span>
+              Prijevod isti dan ili u roku 24 sata
+            </li>
+            <li class="about-services__item">
+              <span class="about-services__dot about-services__dot--orange"></span>
+              Prijevod preko vikenda ili izvan standardnog radnog vremena
+            </li>
+            <li class="about-services__item">
+              <span class="about-services__dot about-services__dot--orange"></span>
+              Prijevod koji ima prioritet u odnosu na druge projekte
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CIJENE LEKTURE I KOREKTURE ===== -->
+  <section class="usluge-section">
+    <div class="container">
+      <h2 class="usluge-section__title">Cijene lekture i korekture</h2>
+      <p class="usluge-section__subtitle">Cijena lekture i korekture ovisi o vrsti teksta, njegovoj duljini, stupnju jezične i stilističke zahtjevnosti te roku izrade.</p>
+
+      <div class="cijenik-zigzag">
+        <!-- Lektura: image left, text right -->
+        <div class="cijenik-zigzag__item">
+          <div class="cijenik-zigzag__image cijenik-zigzag__image--purple">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="cijenik-zigzag__text">
+            <h3 class="cijenik-zigzag__title">Lektura</h3>
+            <p class="cijenik-zigzag__desc">Lektura uključuje korekturu te dodatno obuhvaća gramatičke, jezične i stilističke dorade radi postizanja jasnoće i ujednačenosti teksta.</p>
+          </div>
+        </div>
+
+        <!-- Korektura: text left, image right -->
+        <div class="cijenik-zigzag__item cijenik-zigzag__item--reverse">
+          <div class="cijenik-zigzag__image cijenik-zigzag__image--teal">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="cijenik-zigzag__text">
+            <h3 class="cijenik-zigzag__title">Korektura</h3>
+            <p class="cijenik-zigzag__desc">Korektura obuhvaća ispravljanje pravopisnih, tipografskih i tehničkih pogrešaka.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="usluge-section__subtitle" style="margin-top: 48px; margin-bottom: 0;">Za izradu precizne, neobvezujuće ponude potrebno je dostaviti tekst u digitalnom obliku.</p>
+    </div>
+  </section>
+
+  <!-- ===== CIJENE INTELEKTUALNIH USLUGA ===== -->
+  <section class="usluge-section usluge-section--alt">
+    <div class="container">
+      <h2 class="usluge-section__title">Cijene intelektualnih i administrativnih usluga</h2>
+      <p class="usluge-section__subtitle">Cijena intelektualnih i administrativnih usluga formira se prema vrsti usluge, opsegu posla, složenosti zadatka te dogovorenim rokovima.</p>
+      <div class="cijenik-norms cijenik-norms--3">
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__icon cijenik-norms__icon--purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">Po satu</span>
+            <span class="cijenik-norms__dir">Obračun na temelju utrošenih radnih sati</span>
+          </div>
+        </div>
+        <div class="cijenik-norms__separator"></div>
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__icon cijenik-norms__icon--teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">Po kartici</span>
+            <span class="cijenik-norms__dir">Obračun prema broju autorskih kartica</span>
+          </div>
+        </div>
+        <div class="cijenik-norms__separator"></div>
+        <div class="cijenik-norms__row">
+          <span class="cijenik-norms__icon cijenik-norms__icon--orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </span>
+          <div class="cijenik-norms__text">
+            <span class="cijenik-norms__label">Po projektu</span>
+            <span class="cijenik-norms__dir">Obračun prema ukupnom opsegu i vrsti zadatka</span>
+          </div>
+        </div>
+      </div>
+      <p class="usluge-section__subtitle" style="margin-top: 32px; margin-bottom: 0;">Za detaljne informacije i neobvezujuću ponudu preporučuje se slanje upita s opisom potrebne usluge.</p>
     </div>
   </section>
 
@@ -92,7 +254,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom">
-        <p>&copy; 2025 Lingua Concept. Sva prava pridr&zcaron;ana.</p>
+        <p>&copy; 2025 Lingua Concept. Sva prava pridržana.</p>
       </div>
     </div>
   </footer>
