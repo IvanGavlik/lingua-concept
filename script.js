@@ -320,6 +320,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let tiltX = 0, tiltY = 0;
 
     function applyHeroTransform() {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        wrap.style.transform = "none";
+        return;
+      }
       const parallax = window.pageYOffset * 0.2;
       wrap.style.transform = `perspective(900px) rotateY(${tiltY}deg) rotateX(${tiltX}deg) translateY(${parallax}px)`;
     }
@@ -468,6 +472,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resetBtn) resetBtn.addEventListener("click", resetForm);
   }
 
+  /* ---------- O nama: read-more toggle (mobile only) ---------- */
+  const readMoreBtn = document.getElementById("aboutReadMore");
+  const expandable  = document.getElementById("aboutExpandable");
+
+  if (readMoreBtn && expandable) {
+    readMoreBtn.addEventListener("click", () => {
+      const isOpen = expandable.classList.toggle("is-open");
+      readMoreBtn.classList.toggle("is-open", isOpen);
+      readMoreBtn.setAttribute("aria-expanded", isOpen);
+      readMoreBtn.querySelector(".about-intro__read-more-text").textContent =
+        isOpen ? "Prikaži manje" : "Pročitaj više o meni";
+    });
+  }
+
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
@@ -481,4 +499,294 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  /* ---------- CTA inline contact form ---------- */
+  const ctaContactBtn = document.getElementById("ctaContactBtn");
+  const ctaFormWrap   = document.getElementById("ctaFormWrap");
+
+  if (ctaContactBtn && ctaFormWrap) {
+    ctaContactBtn.addEventListener("click", () => {
+      const opening = ctaFormWrap.hidden;
+      ctaFormWrap.hidden = !opening;
+      if (opening) {
+        // Re-trigger the animation by forcing a reflow
+        ctaFormWrap.style.animation = "none";
+        ctaFormWrap.offsetHeight; // reflow
+        ctaFormWrap.style.animation = "";
+        setTimeout(() => ctaFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" }), 50);
+      }
+    });
+
+    const ctaFields = {
+      ime:    { input: document.getElementById("cf-ime"),    error: document.getElementById("cerr-ime") },
+      email:  { input: document.getElementById("cf-email"),  error: document.getElementById("cerr-email") },
+      poruka: { input: document.getElementById("cf-poruka"), error: document.getElementById("cerr-poruka") },
+    };
+
+    function validateCtaField(key) {
+      const { input, error } = ctaFields[key];
+      const val = input.value.trim();
+      let msg = "";
+
+      if (key === "ime") {
+        if (val.length === 0)        msg = "Ime i prezime je obavezno.";
+        else if (val.length > 100)   msg = "Ime može sadržavati najviše 100 znakova.";
+      } else if (key === "email") {
+        if (val.length === 0)                                  msg = "E-mail adresa je obavezna.";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))    msg = "Unesite valjanu e-mail adresu.";
+      } else if (key === "poruka") {
+        if (val.length === 0)        msg = "Poruka je obavezna.";
+        else if (val.length < 10)    msg = "Poruka mora sadržavati najmanje 10 znakova.";
+        else if (val.length > 2000)  msg = "Poruka može sadržavati najviše 2000 znakova.";
+      }
+
+      const valid = msg === "";
+      error.textContent = msg;
+      input.classList.toggle("is-invalid", !valid);
+      error.classList.toggle("is-visible", !valid);
+      return valid;
+    }
+
+    Object.keys(ctaFields).forEach((key) => {
+      ctaFields[key].input.addEventListener("blur", () => validateCtaField(key));
+      ctaFields[key].input.addEventListener("input", () => {
+        if (ctaFields[key].input.classList.contains("is-invalid")) validateCtaField(key);
+      });
+    });
+
+    const ctaForm    = document.getElementById("ctaForm");
+    const ctaSuccess = document.getElementById("ctaSuccess");
+    const ctaReset   = document.getElementById("ctaReset");
+    const ctaSubmit  = document.getElementById("ctaSubmit");
+    let ctaFormErrorEl = null;
+
+    function showCtaFormError(msg) {
+      if (!ctaFormErrorEl) {
+        ctaFormErrorEl = document.createElement("p");
+        ctaFormErrorEl.className = "price-cta__form-error is-visible";
+        ctaSubmit.parentElement.insertBefore(ctaFormErrorEl, ctaSubmit);
+      }
+      ctaFormErrorEl.textContent = msg;
+      ctaFormErrorEl.hidden = false;
+    }
+
+    function clearCtaFormError() {
+      if (ctaFormErrorEl) ctaFormErrorEl.hidden = true;
+    }
+
+    ctaForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearCtaFormError();
+      const allValid = Object.keys(ctaFields).map(validateCtaField).every(Boolean);
+      if (!allValid) return;
+
+      ctaSubmit.classList.add("is-loading");
+      ctaSubmit.disabled = true;
+
+      const telefon = document.getElementById("cf-telefon")?.value.trim();
+      let message = ctaFields.poruka.input.value.trim();
+      if (telefon) message = `Tel: ${telefon}\n\n${message}`;
+
+      try {
+        const res = await fetch("https://web-compose.onrender.com/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "app-id": "my-app",
+            "service-id": "contact-service",
+            name: ctaFields.ime.input.value.trim(),
+            email: ctaFields.email.input.value.trim(),
+            message,
+          }),
+        });
+
+        if (res.ok) {
+          ctaForm.hidden = true;
+          ctaSuccess.hidden = false;
+          ctaSuccess.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else if (res.status === 429) {
+          showCtaFormError("Previše zahtjeva. Molimo pokušajte za nekoliko minuta.");
+        } else {
+          showCtaFormError("Došlo je do pogreške. Molimo pokušajte ponovno.");
+        }
+      } catch {
+        showCtaFormError("Nije moguće uspostaviti vezu. Provjerite internetsku vezu i pokušajte ponovno.");
+      } finally {
+        ctaSubmit.classList.remove("is-loading");
+        ctaSubmit.disabled = false;
+      }
+    });
+
+    if (ctaReset) {
+      ctaReset.addEventListener("click", () => {
+        ctaForm.reset();
+        Object.keys(ctaFields).forEach((key) => {
+          ctaFields[key].input.classList.remove("is-invalid");
+          ctaFields[key].error.classList.remove("is-visible");
+        });
+        clearCtaFormError();
+        ctaSuccess.hidden = true;
+        ctaForm.hidden = false;
+      });
+    }
+  }
+
+  /* ---------- Cookie consent banner ---------- */
+  const COOKIE_KEY = "lc_cookie_consent";
+
+  if (!localStorage.getItem(COOKIE_KEY)) {
+    const banner = document.createElement("div");
+    banner.className = "cookie-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-label", "Obavijest o kolačićima");
+    banner.innerHTML = `
+      <p class="cookie-banner__text">
+        Ova web stranica koristi kolačiće kako bi poboljšala korisničko iskustvo.
+        <a href="kolacici.html">Saznajte više</a>
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn cookie-banner__btn--ghost" id="cookieNecessary">Samo nužni</button>
+        <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookieAcceptAll">Prihvati sve</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    // Animate in after a short delay
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => banner.classList.add("cookie-banner--visible"));
+    });
+
+    function dismissBanner(choice) {
+      localStorage.setItem(COOKIE_KEY, choice);
+      banner.classList.remove("cookie-banner--visible");
+      banner.addEventListener("transitionend", () => banner.remove(), { once: true });
+    }
+
+    document.getElementById("cookieNecessary").addEventListener("click", () => dismissBanner("necessary"));
+    document.getElementById("cookieAcceptAll").addEventListener("click", () => dismissBanner("all"));
+  }
+
+  /* ---------- Quote form (Cijenik page) ---------- */
+  const quoteForm    = document.getElementById("quoteForm");
+  const quoteSuccess = document.getElementById("quoteSuccess");
+  const quoteReset   = document.getElementById("quoteReset");
+  const quoteSubmit  = document.getElementById("quoteSubmit");
+
+  if (quoteForm) {
+    const quoteFields = {
+      ime:   { input: document.getElementById("qf-ime"),   error: document.getElementById("qerr-ime") },
+      email: { input: document.getElementById("qf-email"), error: document.getElementById("qerr-email") },
+      jezik: { input: document.getElementById("qf-jezik"), error: document.getElementById("qerr-jezik") },
+      tekst: { input: document.getElementById("qf-tekst"), error: document.getElementById("qerr-tekst") },
+    };
+
+    function validateQuoteField(key) {
+      const { input, error } = quoteFields[key];
+      const val = input.value.trim();
+      let msg = "";
+
+      if (key === "ime") {
+        if (val.length === 0)      msg = "Ime i prezime je obavezno.";
+        else if (val.length > 100) msg = "Ime može sadržavati najviše 100 znakova.";
+      } else if (key === "email") {
+        if (val.length === 0)                                 msg = "E-mail adresa je obavezna.";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))   msg = "Unesite valjanu e-mail adresu.";
+      } else if (key === "jezik") {
+        if (val.length === 0) msg = "Odaberite jezični par.";
+      } else if (key === "tekst") {
+        if (val.length === 0)       msg = "Tekst ili opis upita je obavezan.";
+        else if (val.length < 10)   msg = "Opis mora sadržavati najmanje 10 znakova.";
+        else if (val.length > 5000) msg = "Tekst može sadržavati najviše 5000 znakova.";
+      }
+
+      const valid = msg === "";
+      error.textContent = msg;
+      input.classList.toggle("is-invalid", !valid);
+      error.classList.toggle("is-visible", !valid);
+      return valid;
+    }
+
+    Object.keys(quoteFields).forEach((key) => {
+      quoteFields[key].input.addEventListener("blur", () => validateQuoteField(key));
+      quoteFields[key].input.addEventListener("input", () => {
+        if (quoteFields[key].input.classList.contains("is-invalid")) validateQuoteField(key);
+      });
+      // Also validate selects on change
+      quoteFields[key].input.addEventListener("change", () => validateQuoteField(key));
+    });
+
+    let quoteFormErrorEl = null;
+
+    function showQuoteFormError(msg) {
+      if (!quoteFormErrorEl) {
+        quoteFormErrorEl = document.createElement("p");
+        quoteFormErrorEl.className = "quote-form__error is-visible";
+        quoteSubmit.parentElement.insertBefore(quoteFormErrorEl, quoteSubmit);
+      }
+      quoteFormErrorEl.textContent = msg;
+      quoteFormErrorEl.hidden = false;
+    }
+
+    function clearQuoteFormError() {
+      if (quoteFormErrorEl) quoteFormErrorEl.hidden = true;
+    }
+
+    quoteForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearQuoteFormError();
+      const allValid = Object.keys(quoteFields).map(validateQuoteField).every(Boolean);
+      if (!allValid) return;
+
+      quoteSubmit.classList.add("is-loading");
+      quoteSubmit.disabled = true;
+
+      const jezik = document.getElementById("qf-jezik").value;
+      const rok   = document.getElementById("qf-rok")?.value;
+      let message = `Jezični par: ${jezik}`;
+      if (rok) message += `\nRok isporuke: ${rok}`;
+      message += `\n\nTekst / opis upita:\n${quoteFields.tekst.input.value.trim()}`;
+
+      try {
+        const res = await fetch("https://web-compose.onrender.com/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "app-id": "my-app",
+            "service-id": "contact-service",
+            name: quoteFields.ime.input.value.trim(),
+            email: quoteFields.email.input.value.trim(),
+            message,
+          }),
+        });
+
+        if (res.ok) {
+          quoteForm.hidden = true;
+          quoteSuccess.hidden = false;
+          quoteSuccess.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else if (res.status === 429) {
+          showQuoteFormError("Previše zahtjeva. Molimo pokušajte za nekoliko minuta.");
+        } else {
+          showQuoteFormError("Došlo je do pogreške. Molimo pokušajte ponovno.");
+        }
+      } catch {
+        showQuoteFormError("Nije moguće uspostaviti vezu. Provjerite internetsku vezu i pokušajte ponovno.");
+      } finally {
+        quoteSubmit.classList.remove("is-loading");
+        quoteSubmit.disabled = false;
+      }
+    });
+
+    if (quoteReset) {
+      quoteReset.addEventListener("click", () => {
+        quoteForm.reset();
+        Object.keys(quoteFields).forEach((key) => {
+          quoteFields[key].input.classList.remove("is-invalid");
+          quoteFields[key].error.classList.remove("is-visible");
+        });
+        clearQuoteFormError();
+        quoteSuccess.hidden = true;
+        quoteForm.hidden = false;
+      });
+    }
+  }
 });

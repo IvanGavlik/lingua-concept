@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Usluge – Lingua Concept</title>
+  <link rel="icon" type="image/svg+xml" href="img/icon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -153,7 +154,7 @@
   <section class="usluge-section">
     <div class="container">
       <h2 class="usluge-section__title">Intelektualne i administrativne usluge</h2>
-      <div class="usluge-grid usluge-grid--2">
+      <div class="usluge-grid usluge-grid--2 usluge-grid--intelekt">
         <div class="usluge-card">
           <span class="usluge-card__icon usluge-card__icon--teal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -186,6 +187,95 @@
     </div>
   </section>
 
+  <!-- ===== CTA – CIJENIK ===== -->
+  <section class="price-cta">
+    <div class="container">
+      <div class="price-cta__inner">
+        <span class="price-cta__badge">Transparentno</span>
+        <h2 class="price-cta__title">Zanima te cijena?</h2>
+        <p class="price-cta__desc">
+          Jasna cijena prije početka rada &mdash; bez skrivenih naknada.<br>
+          Po&scaron;alji upit, dobij ponudu i odluči bez obveze.
+        </p>
+        <div class="price-cta__actions">
+          <a href="cijenik.html" class="btn btn--white btn--lg">Pogledaj cijenik <span class="btn__arrow">&rarr;</span></a>
+          <button type="button" class="btn btn--ghost-white btn--lg" id="ctaContactBtn">Kontaktirajte nas <span class="btn__arrow">&rarr;</span></button>
+        </div>
+        <div class="price-cta__pills">
+          <span class="price-cta__pill">Brza ponuda</span>
+          <span class="price-cta__pill">Bez skrivenih naknada</span>
+          <span class="price-cta__pill">Cijena dogovorena unaprijed</span>
+        </div>
+
+        <!-- Inline contact form -->
+        <div class="price-cta__form-wrap" id="ctaFormWrap" hidden>
+
+          <div class="price-cta__form-success" id="ctaSuccess" hidden>
+            <span class="price-cta__success-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </span>
+            <h3>Upit uspje&scaron;no poslan!</h3>
+            <p>Hvala vam na upitu. Javit ćemo vam se u najkraćem mogućem roku na navedenu e-mail adresu.</p>
+            <button type="button" class="btn btn--ghost-white" id="ctaReset">Po&scaron;alji novi upit</button>
+          </div>
+
+          <form class="price-cta__form" id="ctaForm" novalidate>
+
+            <div class="price-cta__form-row">
+              <div class="price-cta__form-group">
+                <label class="price-cta__form-label" for="cf-ime">
+                  Ime i prezime <span class="price-cta__form-required">*</span>
+                </label>
+                <input class="price-cta__form-input" type="text" id="cf-ime" name="ime"
+                  placeholder="Ana Horvat" required autocomplete="name" />
+                <span class="price-cta__form-error" id="cerr-ime"></span>
+              </div>
+              <div class="price-cta__form-group">
+                <label class="price-cta__form-label" for="cf-email">
+                  E-mail adresa <span class="price-cta__form-required">*</span>
+                </label>
+                <input class="price-cta__form-input" type="email" id="cf-email" name="email"
+                  placeholder="ana@primjer.hr" required autocomplete="email" />
+                <span class="price-cta__form-error" id="cerr-email"></span>
+              </div>
+            </div>
+
+            <div class="price-cta__form-group price-cta__form-group--half">
+              <label class="price-cta__form-label" for="cf-telefon">
+                Telefon <span class="price-cta__form-optional">neobavezno</span>
+              </label>
+              <input class="price-cta__form-input" type="tel" id="cf-telefon" name="telefon"
+                placeholder="+385 91 234 5678" autocomplete="tel" />
+            </div>
+
+            <div class="price-cta__form-group">
+              <label class="price-cta__form-label" for="cf-poruka">
+                Poruka <span class="price-cta__form-required">*</span>
+              </label>
+              <textarea class="price-cta__form-textarea" id="cf-poruka" name="poruka"
+                placeholder="Opišite vaš upit, vrstu prijevoda, jezik i rok isporuke..."
+                required rows="4"></textarea>
+              <span class="price-cta__form-error" id="cerr-poruka"></span>
+            </div>
+
+            <div class="price-cta__form-footer">
+              <p class="price-cta__form-note">
+                <span class="price-cta__form-required">*</span> Obavezna polja
+              </p>
+              <button type="submit" class="btn btn--white btn--lg" id="ctaSubmit">
+                Po&scaron;alji upit <span class="btn__arrow">&rarr;</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
@@ -202,6 +292,13 @@
             <a href="usluge.html" class="footer__nav-link">Usluge</a>
             <a href="cijenik.html" class="footer__nav-link">Cijenik</a>
             <a href="kontakt.html" class="footer__nav-link">Kontakt</a>
+          </div>
+          <div class="footer__nav-group">
+            <span class="footer__nav-label">Pravno</span>
+            <a href="uvjeti-koristenja.html" class="footer__nav-link">Uvjeti korištenja</a>
+            <a href="politika-privatnosti.html" class="footer__nav-link">Politika privatnosti</a>
+            <a href="opci-uvjeti-poslovanja.html" class="footer__nav-link">Opći uvjeti poslovanja</a>
+            <a href="kolacici.html" class="footer__nav-link">Kolačići</a>
           </div>
         </nav>
       </div>
