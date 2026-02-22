@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="cGrad" x1="132" y1="59" x2="63" y2="141" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#c878e8"/>
+      <stop offset="48%"  stop-color="#7b2db8"/>
+      <stop offset="100%" stop-color="#180228"/>
+    </linearGradient>
+  </defs>
+
+  <!-- L — dark charcoal -->
+  <path d="M63 53 L79 53 L79 127 L97 127 L97 141 L63 141 Z" fill="#222222"/>
+
+  <!-- C — purple gradient arc (outer CCW large arc, inner CW small arc back) -->
+  <path d="M132 59
+           A52 52 0 1 0 132 141
+           L123 129
+           A37 37 0 0 1 123 71
+           Z"
+        fill="url(#cGrad)"/>
+</svg>

@@ -170,6 +170,134 @@ document.addEventListener("DOMContentLoaded", () => {
     pillObserver.observe(pillsContainer);
   }
 
+  /* ---------- Section title scroll animations ---------- */
+  const sectionTitles = document.querySelectorAll([
+    ".section-title",
+    ".about-hero__heading",
+    ".about-vcard__title",
+    ".about-perks__title",
+    ".about-services__title",
+    ".usluge-hero__title",
+    ".usluge-section__title",
+  ].join(", "));
+  sectionTitles.forEach((el) => el.classList.add("section-title--wait"));
+
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("section-title--wait");
+        entry.target.classList.add("section-title--revealed");
+      } else {
+        entry.target.classList.remove("section-title--revealed");
+        entry.target.classList.add("section-title--wait");
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sectionTitles.forEach((el) => titleObserver.observe(el));
+
+  /* ---------- Hero illustration: typing + direction switching ---------- */
+  const heroSrcFlag  = document.getElementById("heroSrcFlag");
+  const heroSrcCode  = document.getElementById("heroSrcCode");
+  const heroSrcText  = document.getElementById("heroSrcText");
+  const heroDestFlag = document.getElementById("heroDestFlag");
+  const heroDestCode = document.getElementById("heroDestCode");
+  const heroDestLang = document.getElementById("heroDestLang");
+  const heroDestText = document.getElementById("heroDestText");
+  const heroTypingCursor = document.getElementById("heroTypingCursor");
+  const heroDocLang  = document.querySelector(".hero__doc--left .hero__doc-lang");
+  const langBadges   = document.querySelectorAll(".hero__lang-badge");
+  const swapBtn      = document.getElementById("swapBtn");
+
+  const HR_TEXT = "Točni i pouzdani prijevodi za vaše poslovne potrebe.";
+  let typingTimer = null;
+  let loopTimer = null;
+  let mode = "to-hr"; // "to-hr" | "from-hr"
+
+  function typeText(text, delay = 0) {
+    if (!heroDestText || !heroTypingCursor) return;
+    clearTimeout(typingTimer);
+    clearTimeout(loopTimer);
+    heroDestText.textContent = "";
+    heroTypingCursor.classList.remove("hero__typing-cursor--done");
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        heroDestText.textContent += text[i++];
+        typingTimer = setTimeout(type, 38);
+      } else {
+        // Wait 4 seconds, then clear and restart
+        loopTimer = setTimeout(() => typeText(text, 0), 4000);
+      }
+    }
+    typingTimer = setTimeout(type, delay);
+  }
+
+  function getActiveLang() {
+    const b = document.querySelector(".hero__lang-badge--active");
+    return b ? { flag: b.dataset.flag, code: b.dataset.code, text: b.dataset.text } : null;
+  }
+
+  function swapLeftCard(flag, code, text) {
+    heroDocLang.style.opacity = "0";
+    heroSrcText.style.opacity = "0";
+    setTimeout(() => {
+      heroSrcFlag.textContent = flag;
+      heroSrcCode.textContent = code;
+      heroSrcText.textContent = text;
+      heroDocLang.style.opacity = "1";
+      heroSrcText.style.opacity = "1";
+    }, 300);
+  }
+
+  function swapRightLang(flag, code) {
+    heroDestLang.style.opacity = "0";
+    setTimeout(() => {
+      heroDestFlag.textContent = flag;
+      heroDestCode.textContent = code;
+      heroDestLang.style.opacity = "1";
+    }, 300);
+  }
+
+  function setMode(newMode) {
+    if (mode === newMode) return;
+    mode = newMode;
+    const lang = getActiveLang();
+
+    if (swapBtn) swapBtn.classList.toggle("hero__swap-btn--swapped", mode === "from-hr");
+
+    if (mode === "to-hr") {
+      if (lang) swapLeftCard(lang.flag, lang.code, lang.text);
+      swapRightLang("🇭🇷", "HR");
+      typeText(HR_TEXT, 400);
+    } else {
+      swapLeftCard("🇭🇷", "HR", HR_TEXT);
+      if (lang) swapRightLang(lang.flag, lang.code);
+      if (lang) typeText(lang.text, 400);
+    }
+  }
+
+  if (swapBtn) swapBtn.addEventListener("click", () => setMode(mode === "to-hr" ? "from-hr" : "to-hr"));
+
+  // Initial page-load type
+  typeText(HR_TEXT, 800);
+
+  langBadges.forEach((badge) => {
+    badge.addEventListener("click", () => {
+      if (badge.classList.contains("hero__lang-badge--active")) return;
+      langBadges.forEach((b) => b.classList.remove("hero__lang-badge--active"));
+      badge.classList.add("hero__lang-badge--active");
+
+      if (mode === "to-hr") {
+        swapLeftCard(badge.dataset.flag, badge.dataset.code, badge.dataset.text);
+        typeText(HR_TEXT, 380);
+      } else {
+        swapRightLang(badge.dataset.flag, badge.dataset.code);
+        typeText(badge.dataset.text, 0);
+      }
+    });
+  });
+
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
     rel="stylesheet"
   />
 </head>
@@ -41,9 +41,10 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="container hero__content">
-      <h1 class="hero__title" style="    font-weight: 600;">
-        Lingua Concept
+      <h1 class="hero__title">
+        <span class="hero__title-lingua">Lingua</span> <span class="hero__title-concept">Concept</span>
       </h1>
+      <div class="hero__title-accent"></div>
       <p class="hero__subtitle">
         Više od prijevoda.
 		</br>
@@ -55,65 +56,65 @@ Točni, kontekstualni i stručni prijevodi za regionalne jezike i
       </div>
 
       <!-- Translation illustration -->
-      <div class="hero__illustration">
-        <div class="hero__doc hero__doc--left">
-          <div class="hero__doc-header">
-            <span class="hero__doc-dot"></span>
-            <span class="hero__doc-dot"></span>
-            <span class="hero__doc-dot"></span>
+      <div class="hero__illus-wrap">
+        <div class="hero__illustration">
+          <div class="hero__doc hero__doc--left">
+            <div class="hero__doc-header">
+              <span class="hero__doc-dot"></span>
+              <span class="hero__doc-dot"></span>
+              <span class="hero__doc-dot"></span>
+            </div>
+            <div class="hero__doc-lang">
+              <span id="heroSrcFlag">🇭🇺</span>
+              <span id="heroSrcCode">HU</span>
+            </div>
+            <p class="hero__doc-text" id="heroSrcText">Pontos és megbízható fordítások üzleti igényeihez.</p>
           </div>
-          <div class="hero__doc-lang">EN</div>
-          <div class="hero__doc-lines">
-            <div class="hero__doc-line" style="width:90%"></div>
-            <div class="hero__doc-line" style="width:75%"></div>
-            <div class="hero__doc-line" style="width:85%"></div>
-            <div class="hero__doc-line" style="width:60%"></div>
-            <div class="hero__doc-line" style="width:80%"></div>
+
+          <button class="hero__swap-btn" id="swapBtn" title="Zamijeni smjer prijevoda">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 3l4 4-4 4"/>
+              <path d="M4 7h16"/>
+              <path d="M8 21l-4-4 4-4"/>
+              <path d="M20 17H4"/>
+            </svg>
+          </button>
+
+          <div class="hero__doc hero__doc--right">
+            <div class="hero__doc-header">
+              <span class="hero__doc-dot"></span>
+              <span class="hero__doc-dot"></span>
+              <span class="hero__doc-dot"></span>
+            </div>
+            <div class="hero__doc-lang" id="heroDestLang">
+              <span id="heroDestFlag">🇭🇷</span>
+              <span id="heroDestCode">HR</span>
+            </div>
+            <p class="hero__doc-text"><span id="heroDestText"></span><span class="hero__typing-cursor" id="heroTypingCursor">|</span></p>
           </div>
         </div>
 
-        <div class="hero__arrow-group">
-          <svg class="hero__arrow-svg" width="60" height="40" viewBox="0 0 60 40" fill="none">
-            <path d="M4 20h48M44 10l12 10-12 10" stroke="var(--accent-purple)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg class="hero__arrow-svg" width="60" height="40" viewBox="0 0 60 40" fill="none" style="transform:rotate(180deg)">
-            <path d="M4 20h48M44 10l12 10-12 10" stroke="var(--accent-teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
-        <div class="hero__doc hero__doc--right">
-          <div class="hero__doc-header">
-            <span class="hero__doc-dot"></span>
-            <span class="hero__doc-dot"></span>
-            <span class="hero__doc-dot"></span>
-          </div>
-          <div class="hero__doc-lang">HR</div>
-          <div class="hero__doc-lines">
-            <div class="hero__doc-line" style="width:85%"></div>
-            <div class="hero__doc-line" style="width:80%"></div>
-            <div class="hero__doc-line" style="width:70%"></div>
-            <div class="hero__doc-line" style="width:90%"></div>
-            <div class="hero__doc-line" style="width:65%"></div>
-          </div>
+        <div class="hero__lang-badges">
+          <button class="hero__lang-badge hero__lang-badge--active" data-flag="🇭🇺" data-code="HU" data-text="Pontos és megbízható fordítások üzleti igényeihez.">🇭🇺 HU</button>
+          <button class="hero__lang-badge" data-flag="🇲🇰" data-code="MK" data-text="Точни и доверливи преводи за деловни потреби.">🇲🇰 MK</button>
+          <button class="hero__lang-badge" data-flag="🇸🇮" data-code="SL" data-text="Natančni in zanesljivi prevodi za vaše potrebe.">🇸🇮 SL</button>
+          <button class="hero__lang-badge" data-flag="🇷🇸" data-code="SR" data-text="Tačni i pouzdani prevodi za vaše poslovne potrebe.">🇷🇸 SR</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== GOVERNANCE ===== -->
-  <section class="governance" id="o-nama">
+  <section class="governance" id="o-nama" style="background:white;" >
     <div class="container governance__inner">
       <div class="governance__text">
-        <h2 class="section-title" style="    font-weight: 600; " >O nama</h2>
+        <h2 class="section-title">O nama</h2>
         <p class="section-desc">
           Lingua Concept je obrt za prevoditeljske i intelektualne usluge sa sjedištem u Rakovom Potoku (Zagrebačka županija), osnovan 2025. godine. Fokus rada je na pružanju preciznih i pouzdanih jezičnih usluga, uz dosljednu terminologiju, poštivanje rokova i primjenu suvremenih prevoditeljskih alata.
         </p>
       </div>
       <div class="governance__visual">
-        <div class="governance__circle">
-          <div class="governance__ring"></div>
-          <span>Lingua Concept</span>
-        </div>
+        <img src="img/logo.png" alt="Lingua Concept" class="governance__logo">
       </div>
     </div>
   </section>
@@ -122,7 +123,7 @@ Točni, kontekstualni i stručni prijevodi za regionalne jezike i
   <section class="builders" id="usluge">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title" style="    font-weight: 600;" >Usluge</h2>
+        <h2 class="section-title">Usluge</h2>
         <p class="section-desc">
           Pružamo raznovrsne prevoditeljske i intelektualne usluge u skladu s potrebama klijenata.
         </p>
@@ -198,7 +199,7 @@ Točni, kontekstualni i stručni prijevodi za regionalne jezike i
       <div class="info-card">
         <div class="info-card__grid">
           <div class="info-card__brand">
-            <h2 class="section-title" style="    font-weight: 600;" >Kontakt podatci</h2>
+            <h2 class="section-title">Kontakt podatci</h2>
             <p class="info-card__disclaimer">
               Lingua Concept je obrt za prevoditeljske i intelektualne usluge.
               Pru&zcaron;amo profesionalne prijevode i jezi&ccaron;ne usluge s naglaskom

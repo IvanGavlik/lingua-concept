@@ -1,0 +1,12 @@
+- images on the all pages
+	- o name, usluge, cijena same stil for image
+- icona / faicon
+- kontakt page
+- poslati ugovor
+- more buttons
+- footer 
+- one more kontakt form on the cijenik page
+- mobile friendly
+	- navigation section set viewport (all devices resolution 1200 x 800... and oters)
+	- investigate device/monitor resoulutons most common
+- prijevod na madjarski ili neke druge jezike
