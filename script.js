@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".about-services__title",
     ".usluge-hero__title",
     ".usluge-section__title",
+    ".page-hero__title",
   ].join(", "));
 
   // Split each title's text into individual word <span>s
@@ -311,6 +312,161 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  /* ---------- Page hero: 3D tilt + parallax scroll ---------- */
+  const pageHeroWraps = document.querySelectorAll(".page-hero__image-wrap");
+
+  pageHeroWraps.forEach((wrap) => {
+    let tiltX = 0, tiltY = 0;
+
+    function applyHeroTransform() {
+      const parallax = window.pageYOffset * 0.2;
+      wrap.style.transform = `perspective(900px) rotateY(${tiltY}deg) rotateX(${tiltX}deg) translateY(${parallax}px)`;
+    }
+
+    wrap.addEventListener("mousemove", (e) => {
+      wrap.classList.remove("tilt-resetting");
+      const rect = wrap.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      tiltY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+      tiltX = -((e.clientY - cy) / (rect.height / 2)) * 6;
+      applyHeroTransform();
+    });
+
+    wrap.addEventListener("mouseleave", () => {
+      wrap.classList.add("tilt-resetting");
+      tiltX = 0;
+      tiltY = 0;
+      applyHeroTransform();
+      setTimeout(() => wrap.classList.remove("tilt-resetting"), 500);
+    });
+
+    window.addEventListener("scroll", applyHeroTransform, { passive: true });
+    applyHeroTransform();
+  });
+
+  /* ---------- Kontakt form — client-side validation ---------- */
+  const kontaktForm = document.getElementById("kontaktForm");
+  if (kontaktForm) {
+    const fields = {
+      ime:    { input: document.getElementById("kf-ime"),    error: document.getElementById("err-ime") },
+      email:  { input: document.getElementById("kf-email"),  error: document.getElementById("err-email") },
+      poruka: { input: document.getElementById("kf-poruka"), error: document.getElementById("err-poruka") },
+    };
+
+    function validateField(key) {
+      const { input, error } = fields[key];
+      const val = input.value.trim();
+      let msg = "";
+
+      if (key === "ime") {
+        if (val.length === 0)        msg = "Ime i prezime je obavezno.";
+        else if (val.length > 100)   msg = "Ime može sadržavati najviše 100 znakova.";
+      } else if (key === "email") {
+        if (val.length === 0)                                  msg = "E-mail adresa je obavezna.";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))    msg = "Unesite valjanu e-mail adresu.";
+      } else if (key === "poruka") {
+        if (val.length === 0)        msg = "Poruka je obavezna.";
+        else if (val.length < 10)    msg = "Poruka mora sadržavati najmanje 10 znakova.";
+        else if (val.length > 2000)  msg = "Poruka može sadržavati najviše 2000 znakova.";
+      }
+
+      const valid = msg === "";
+      error.textContent = msg;
+      input.classList.toggle("is-invalid", !valid);
+      error.classList.toggle("is-visible", !valid);
+      return valid;
+    }
+
+    // Live validation on blur
+    Object.keys(fields).forEach((key) => {
+      fields[key].input.addEventListener("blur", () => validateField(key));
+      fields[key].input.addEventListener("input", () => {
+        if (fields[key].input.classList.contains("is-invalid")) validateField(key);
+      });
+    });
+
+    const successPanel = document.getElementById("kontaktSuccess");
+    const resetBtn = document.getElementById("kontaktReset");
+    const formHeader = kontaktForm.closest(".kontakt-form-card").querySelector(".kontakt-form-card__header");
+
+    function showSuccess() {
+      if (formHeader) formHeader.hidden = true;
+      kontaktForm.hidden = true;
+      successPanel.hidden = false;
+    }
+
+    function resetForm() {
+      kontaktForm.reset();
+      Object.keys(fields).forEach((key) => {
+        fields[key].input.classList.remove("is-invalid");
+        fields[key].error.classList.remove("is-visible");
+      });
+      successPanel.hidden = true;
+      kontaktForm.hidden = false;
+      if (formHeader) formHeader.hidden = false;
+    }
+
+    // Generic form-level error
+    const submitBtn = document.getElementById("kfSubmit");
+    let formErrorEl = null;
+    function showFormError(msg) {
+      if (!formErrorEl) {
+        formErrorEl = document.createElement("p");
+        formErrorEl.className = "kontakt-form__form-error";
+        submitBtn.parentElement.insertBefore(formErrorEl, submitBtn);
+      }
+      formErrorEl.textContent = msg;
+      formErrorEl.hidden = false;
+    }
+    function clearFormError() {
+      if (formErrorEl) formErrorEl.hidden = true;
+    }
+
+    kontaktForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearFormError();
+      const allValid = Object.keys(fields).map(validateField).every(Boolean);
+      if (!allValid) return;
+
+      submitBtn.classList.add("is-loading");
+      submitBtn.disabled = true;
+
+      const telefon = document.getElementById("kf-telefon")?.value.trim();
+      let message = fields.poruka.input.value.trim();
+      if (telefon) message = `Tel: ${telefon}\n\n${message}`;
+
+      try {
+        const res = await fetch("https://web-compose.onrender.com/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "app-id": "my-app",
+            "service-id": "contact-service",
+            name: fields.ime.input.value.trim(),
+            email: fields.email.input.value.trim(),
+            message,
+          }),
+        });
+
+        if (res.ok) {
+          showSuccess();
+        } else if (res.status === 429) {
+          showFormError("Previše zahtjeva. Molimo pokušajte za nekoliko minuta.");
+        } else {
+          showFormError("Došlo je do pogreške. Molimo pokušajte ponovno.");
+        }
+      } catch {
+        showFormError("Nije moguće uspostaviti vezu. Provjerite internetsku vezu i pokušajte ponovno.");
+      } finally {
+        submitBtn.classList.remove("is-loading");
+        submitBtn.disabled = false;
+      }
+    });
+
+    if (resetBtn) resetBtn.addEventListener("click", resetForm);
+  }
 
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

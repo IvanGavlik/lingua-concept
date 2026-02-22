@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 50">
+  <defs>
+    <linearGradient id="cg" x1="58" y1="8" x2="25" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#c084fc"/>
+      <stop offset="50%"  stop-color="#7c4dff"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+  </defs>
+
+  <!-- L — near-black -->
+  <path d="M2 2 L15 2 L15 38 L24 38 L24 48 L2 48 Z" fill="#111827"/>
+
+  <!-- C — purple gradient crescent, opens to the right -->
+  <path d="M58 8 A21 21 0 1 0 58 42 L54 36.5 A14 14 0 1 1 54 13.5 Z" fill="url(#cg)"/>
+</svg>

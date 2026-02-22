@@ -1,12 +1,25 @@
-- images on the all pages
-	- o name, usluge, cijena same stil for image
-- icona / faicon
-- kontakt page
-- poslati ugovor
+- icona done 
+- faicon ? 
+
+- footer in progress
+
 - more buttons
-- footer 
-- one more kontakt form on the cijenik page
+	- O nama
+		Jezicne usluge -> button odi na usluge (Usluge)
+	- Usluge
+		- na kraj -> skeciju pogledaj cijenu (saznaj koja je cijena)
+	- Cijenik page add forma 
+		- Za izradu precizne, neobvezujuće ponude potrebno je dostaviti tekst u digitalnom obliku.
+
+- js kolcaciti
 - mobile friendly
 	- navigation section set viewport (all devices resolution 1200 x 800... and oters)
 	- investigate device/monitor resoulutons most common
+
+s njom dogovoriti
+- poslati ugovor i naplata
+- test email
 - prijevod na madjarski ili neke druge jezike
+- linkovi na drustvene mreze
+- chat icon on all the pages 
+	-> dodatno naplatiti  

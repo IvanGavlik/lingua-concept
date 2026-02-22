@@ -17,14 +17,14 @@
   <header class="header">
     <nav class="nav container">
       <a href="index.html" class="nav__logo">
-        <span>Lingua Concept</span>
+        <img src="img/icon.svg" alt="Lingua Concept" class="nav__logo-icon" />
       </a>
 
       <ul class="nav__links" id="navLinks">
         <li><a href="o-nama.html">O nama</a></li>
         <li><a href="usluge.html">Usluge</a></li>
         <li><a href="cijenik.html">Cijenik</a></li>
-        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
 
       <div class="nav__actions"></div>
@@ -36,12 +36,21 @@
   </header>
 
   <!-- ===== HERO ===== -->
-  <section class="usluge-hero">
-    <div class="container">
-      <h1 class="usluge-hero__title">Cijene usluga</h1>
-      <p class="usluge-hero__desc">
-        Transparentno formiranje cijena bez skrivenih troškova. Saznajte kako obračunavamo prijevode, lekturu i ostale usluge.
-      </p>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+
+      <div class="page-hero__text">
+        <span class="page-hero__badge">Cijenik</span>
+        <h1 class="page-hero__title">Cijene usluga</h1>
+        <p class="page-hero__desc">Transparentno formiranje cijena bez skrivenih troškova. Prijevodi, lektura i ostale usluge.</p>
+      </div>
+
+      <div class="page-hero__image-wrap">
+        <img src="img/Kartica Cjenik.png"
+             alt="Cijenik – Lingua Concept"
+             class="page-hero__image" />
+      </div>
+
     </div>
   </section>
 
@@ -186,7 +195,35 @@
         <!-- Lektura: image left, text right -->
         <div class="cijenik-zigzag__item">
           <div class="cijenik-zigzag__image cijenik-zigzag__image--purple">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <div class="lektura-doc" aria-hidden="true">
+              <div class="lektura-doc__titlebar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="lektura-doc__line lektura-line--1">
+                <div class="lektura-doc__bar lektura-doc__bar--1"></div>
+                <div class="lektura-doc__ul lektura-doc__ul--1">
+                  <svg class="lektura-doc__pen lektura-doc__pen--1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </div>
+              </div>
+              <div class="lektura-doc__line lektura-line--2">
+                <div class="lektura-doc__bar lektura-doc__bar--2"></div>
+                <div class="lektura-doc__ul lektura-doc__ul--2">
+                  <svg class="lektura-doc__pen lektura-doc__pen--2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </div>
+              </div>
+              <div class="lektura-doc__line lektura-line--3">
+                <div class="lektura-doc__bar lektura-doc__bar--3"></div>
+                <div class="lektura-doc__ul lektura-doc__ul--3">
+                  <svg class="lektura-doc__pen lektura-doc__pen--3" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </div>
+              </div>
+              <div class="lektura-doc__line lektura-line--4">
+                <div class="lektura-doc__bar lektura-doc__bar--4"></div>
+                <div class="lektura-doc__ul lektura-doc__ul--4">
+                  <svg class="lektura-doc__pen lektura-doc__pen--4" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="cijenik-zigzag__text">
             <h3 class="cijenik-zigzag__title">Lektura</h3>
@@ -197,7 +234,45 @@
         <!-- Korektura: text left, image right -->
         <div class="cijenik-zigzag__item cijenik-zigzag__item--reverse">
           <div class="cijenik-zigzag__image cijenik-zigzag__image--teal">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div class="korektura-doc" aria-hidden="true">
+              <div class="korektura-doc__titlebar">
+                <span></span><span></span><span></span>
+              </div>
+              <!-- Row 1: 3 word bars -->
+              <div class="korektura-doc__row">
+                <div class="kor-item kor-item--1">
+                  <span class="kor-item__tick kor-item__tick--1">✓</span>
+                </div>
+                <div class="kor-item kor-item--2">
+                  <span class="kor-item__tick kor-item__tick--2">✓</span>
+                </div>
+                <div class="kor-item kor-item--3">
+                  <span class="kor-item__tick kor-item__tick--3">✓</span>
+                </div>
+              </div>
+              <!-- Row 2: bar · ERROR bar · bar -->
+              <div class="korektura-doc__row">
+                <div class="kor-item kor-item--4">
+                  <span class="kor-item__tick kor-item__tick--4">✓</span>
+                </div>
+                <div class="kor-item kor-item--err">
+                  <span class="kor-item__wavy"></span>
+                  <span class="kor-item__tick kor-item__tick--err">✓</span>
+                </div>
+                <div class="kor-item kor-item--5">
+                  <span class="kor-item__tick kor-item__tick--5">✓</span>
+                </div>
+              </div>
+              <!-- Row 3: 2 word bars -->
+              <div class="korektura-doc__row">
+                <div class="kor-item kor-item--6">
+                  <span class="kor-item__tick kor-item__tick--6">✓</span>
+                </div>
+                <div class="kor-item kor-item--7">
+                  <span class="kor-item__tick kor-item__tick--7">✓</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="cijenik-zigzag__text">
             <h3 class="cijenik-zigzag__title">Korektura</h3>
@@ -253,8 +328,25 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="footer__brand-name">Lingua Concept</span>
+          <span class="footer__brand-desc">Prevoditeljske i intelektualne usluge</span>
+        </div>
+        <nav class="footer__nav" aria-label="Karta stranica">
+          <div class="footer__nav-group">
+            <span class="footer__nav-label">Stranice</span>
+            <a href="index.html" class="footer__nav-link">Početna</a>
+            <a href="o-nama.html" class="footer__nav-link">O nama</a>
+            <a href="usluge.html" class="footer__nav-link">Usluge</a>
+            <a href="cijenik.html" class="footer__nav-link">Cijenik</a>
+            <a href="kontakt.html" class="footer__nav-link">Kontakt</a>
+          </div>
+        </nav>
+      </div>
       <div class="footer__bottom">
         <p>&copy; 2025 Lingua Concept. Sva prava pridržana.</p>
+        <p class="footer__credit">Izradio <a href="https://wortkraftmaster.org/" target="_blank" rel="noopener noreferrer">wortkraftmaster.org</a></p>
       </div>
     </div>
   </footer>

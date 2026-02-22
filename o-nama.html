@@ -17,14 +17,14 @@
   <header class="header">
     <nav class="nav container">
       <a href="index.html" class="nav__logo">
-        <span>Lingua Concept</span>
+        <img src="img/icon.svg" alt="Lingua Concept" class="nav__logo-icon" />
       </a>
 
       <ul class="nav__links" id="navLinks">
         <li><a href="o-nama.html">O nama</a></li>
         <li><a href="usluge.html">Usluge</a></li>
         <li><a href="cijenik.html">Cijenik</a></li>
-        <li><a href="index.html#kontakt">Kontakt</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
 
       <div class="nav__actions">
@@ -37,30 +37,44 @@
   </header>
 
   <!-- ===== O NAMA (HERO) ===== -->
-  <section class="about-hero">
-    <div class="container">
-      <div class="about-hero__visual"></div>
-      <h1 class="about-hero__heading">O nama</h1>
-      <div class="about-hero__columns">
-        <div class="about-hero__left">		
-		          <p class="about-hero__bold-text">
-		Vlasnica obrta,
-		sveučilišna magistrica mađarskog jezika i književnosti te južnoslavenskih jezika i književnosti.
-          </p>
+  <section class="page-hero">
+    <div class="container page-hero__inner">
 
-		<br>
-          <p class="about-hero__bold-text">
-            Tri godine kontinuiranog rada u prevoditeljstvu.
-          </p>
-        </div>
-        <div class="about-hero__right">
-          <p class="about-hero__body-text">
-            Lingua Concept je obrt za prevoditeljske i intelektualne usluge sa sjedištem u Rakovom Potoku (Zagrebačka županija). Obrt je osnovan 2025. godine, nakon završetka fakultetskog obrazovanja i tri godine kontinuiranog rada u prevoditeljstvu, uz potporu Hrvatskog zavoda za zapošljavanje.
-          </p>
-          <p class="about-hero__body-text">
-            Djelatnost obrta usmjerena je na pružanje kvalitetnih i pouzdanih jezičnih usluga, uz poseban naglasak na preciznost, terminološku dosljednost i poštivanje dogovorenih rokova, uključujući i situacije kada su rokovi vrlo kratki. U radu se koriste suvremeni prevoditeljski alati i provjerene metode prevođenja radi osiguravanja visoke razine kvalitete i ujednačene terminologije.
-          </p>
-        </div>
+      <div class="page-hero__text">
+        <span class="page-hero__badge">O nama</span>
+        <h1 class="page-hero__title">O nama</h1>
+        <p class="page-hero__desc">Vlasnica obrta, sveučilišna magistrica mađarskog i južnoslavenskih jezika s tri godine iskustva u prevoditeljstvu.</p>
+      </div>
+
+      <div class="page-hero__image-wrap">
+        <img src="img/Kartica O nama.png"
+             alt="O nama – Lingua Concept"
+             class="page-hero__image" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== O NAMA (BIO) ===== -->
+  <section class="about-intro">
+    <div class="container about-hero__columns">
+      <div class="about-hero__left">
+        <p class="about-hero__bold-text">
+Fokus rada je na pružanju preciznih i pouzdanih jezičnih usluga, uz dosljednu terminologiju, poštivanje rokova i primjenu suvremenih prevoditeljskih alata.
+        </p>
+
+        <br>
+        <p class="about-hero__bold-text">
+          Tri godine kontinuiranog rada u prevoditeljstvu.
+        </p>
+      </div>
+      <div class="about-hero__right">
+        <p class="about-hero__body-text">
+          Lingua Concept je obrt za prevoditeljske i intelektualne usluge sa sjedištem u Rakovom Potoku (Zagrebačka županija). Obrt je osnovan 2025. godine, nakon završetka fakultetskog obrazovanja i tri godine kontinuiranog rada u prevoditeljstvu, uz potporu Hrvatskog zavoda za zapošljavanje.
+        </p>
+        <p class="about-hero__body-text">
+          Djelatnost obrta usmjerena je na pružanje kvalitetnih i pouzdanih jezičnih usluga, uz poseban naglasak na preciznost, terminološku dosljednost i poštivanje dogovorenih rokova, uključujući i situacije kada su rokovi vrlo kratki. U radu se koriste suvremeni prevoditeljski alati i provjerene metode prevođenja radi osiguravanja visoke razine kvalitete i ujednačene terminologije.
+        </p>
       </div>
     </div>
   </section>
@@ -243,8 +257,25 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="footer__brand-name">Lingua Concept</span>
+          <span class="footer__brand-desc">Prevoditeljske i intelektualne usluge</span>
+        </div>
+        <nav class="footer__nav" aria-label="Karta stranica">
+          <div class="footer__nav-group">
+            <span class="footer__nav-label">Stranice</span>
+            <a href="index.html" class="footer__nav-link">Početna</a>
+            <a href="o-nama.html" class="footer__nav-link">O nama</a>
+            <a href="usluge.html" class="footer__nav-link">Usluge</a>
+            <a href="cijenik.html" class="footer__nav-link">Cijenik</a>
+            <a href="kontakt.html" class="footer__nav-link">Kontakt</a>
+          </div>
+        </nav>
+      </div>
       <div class="footer__bottom">
         <p>&copy; 2025 Lingua Concept. Sva prava pridržana.</p>
+        <p class="footer__credit">Izradio <a href="https://wortkraftmaster.org/" target="_blank" rel="noopener noreferrer">wortkraftmaster.org</a></p>
       </div>
     </div>
   </footer>
