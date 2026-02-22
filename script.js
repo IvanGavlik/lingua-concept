@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pillObserver.observe(pillsContainer);
   }
 
-  /* ---------- Section title scroll animations ---------- */
+  /* ---------- Section title word-by-word animations ---------- */
   const sectionTitles = document.querySelectorAll([
     ".section-title",
     ".about-hero__heading",
@@ -180,16 +180,30 @@ document.addEventListener("DOMContentLoaded", () => {
     ".usluge-hero__title",
     ".usluge-section__title",
   ].join(", "));
-  sectionTitles.forEach((el) => el.classList.add("section-title--wait"));
+
+  // Split each title's text into individual word <span>s
+  sectionTitles.forEach((el) => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map((w) => `<span class="title-word">${w}</span>`).join(" ");
+  });
+
+  const titleTimers = new Map();
 
   const titleObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
+      const el = entry.target;
+      const words = el.querySelectorAll(".title-word");
+
+      // Cancel any pending timers for this element
+      (titleTimers.get(el) || []).forEach(clearTimeout);
+
       if (entry.isIntersecting) {
-        entry.target.classList.remove("section-title--wait");
-        entry.target.classList.add("section-title--revealed");
+        const timers = Array.from(words).map((word, i) =>
+          setTimeout(() => word.classList.add("word-visible"), i * 90)
+        );
+        titleTimers.set(el, timers);
       } else {
-        entry.target.classList.remove("section-title--revealed");
-        entry.target.classList.add("section-title--wait");
+        words.forEach((word) => word.classList.remove("word-visible"));
       }
     });
   }, { threshold: 0.3 });
