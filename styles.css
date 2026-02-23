@@ -1873,6 +1873,7 @@ img {
 }
 
 .page-hero__image-wrap {
+  overflow: hidden;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
 }
@@ -1884,6 +1885,10 @@ img {
   object-position: center;
   border-radius: 20px;
   display: block;
+}
+
+.page-hero__image--kontakt {
+  object-position: center 50%;
 }
 
 /* O nama bio section */
