@@ -648,8 +648,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ---------- Mobile accordion (Cijenik page) ---------- */
-  (function initCijenikAccordion() {
+  /* ---------- Mobile accordion (Cjenik page) ---------- */
+  (function initCjenikAccordion() {
     const sections = document.querySelectorAll(".accordion-section");
     if (!sections.length) return;
 
@@ -746,7 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cookieAcceptAll").addEventListener("click", () => dismissBanner("all"));
   }
 
-  /* ---------- Quote form (Cijenik page) ---------- */
+  /* ---------- Quote form (Cjenik page) ---------- */
   const quoteForm    = document.getElementById("quoteForm");
   const quoteSuccess = document.getElementById("quoteSuccess");
   const quoteReset   = document.getElementById("quoteReset");

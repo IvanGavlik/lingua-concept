@@ -1,17 +1,21 @@
-- mobile friendly Cijenik page 
-	- navigation section set viewport (all devices resolution 1200 x 800... and oters)
-	- investigate device/monitor resoulutons most common
-	- left
+- email i korisnik odbije poruku da je zahtjev zaprimljen
 
-- forms title should have the same style and animnations as sections title (except colors)
 
 s njom dogovoriti
 - poslati ugovor i naplata
 - test and set up email
-- prijevod na madjarski ili neke druge jezike
 - linkovi na drustvene mreze
+
+- prijevod na madjarski ili neke druge jezike
+	-> dodatno naplatiti 	
 - chat icon on all the pages 
-	-> dodatno naplatiti  
+	-> dodatno naplatiti
+- mobile view
+	-> dodtano naplatiti 
+- email attachment  
+	.> dodatno naplatiti 
+- konzultacije za marketing i seo
+	.> dodatno naplatiti 
 
 
  Open the page in browser DevTools and test at these sizes:

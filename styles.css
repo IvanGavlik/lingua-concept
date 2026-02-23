@@ -848,17 +848,17 @@ img {
 /* =============================================
    CIJENIK (Pricing page)
    ============================================= */
-.cijenik {
+.cjenik {
   padding: 160px 0 var(--section-padding);
 }
 
-.cijenik__grid {
+.cjenik__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.cijenik__card {
+.cjenik__card {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -866,13 +866,13 @@ img {
   transition: var(--transition);
 }
 
-.cijenik__card:hover {
+.cjenik__card:hover {
   border-color: var(--border-color-hover);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
 }
 
-.cijenik__icon {
+.cjenik__icon {
   width: 56px;
   height: 56px;
   border-radius: 14px;
@@ -882,29 +882,29 @@ img {
   margin-bottom: 20px;
 }
 
-.cijenik__icon--1 {
+.cjenik__icon--1 {
   background: #e0f2f1;
   color: var(--accent-teal);
 }
 
-.cijenik__icon--2 {
+.cjenik__icon--2 {
   background: #ede7f6;
   color: var(--accent-purple);
 }
 
-.cijenik__icon--3 {
+.cjenik__icon--3 {
   background: #fff3e0;
   color: #ef6c00;
 }
 
-.cijenik__card h3 {
+.cjenik__card h3 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--text-heading);
 }
 
-.cijenik__card p {
+.cjenik__card p {
   color: var(--text-body);
   margin-bottom: 20px;
   line-height: 1.65;
@@ -912,7 +912,7 @@ img {
 }
 
 @media (max-width: 768px) {
-  .cijenik__grid {
+  .cjenik__grid {
     grid-template-columns: 1fr;
   }
 }
@@ -2048,7 +2048,7 @@ img {
   margin-bottom: 40px;
 }
 
-/* Purple accent line for usluge/cijenik section titles */
+/* Purple accent line for usluge/cjenik section titles */
 .usluge-section__title::after {
   content: '';
   display: block;
@@ -2574,7 +2574,7 @@ img {
 /* =============================================
    CIJENIK PAGE (new)
    ============================================= */
-.cijenik-stat {
+.cjenik-stat {
   display: block;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
@@ -2583,15 +2583,15 @@ img {
   margin-bottom: 12px;
 }
 
-.cijenik-stat--teal {
+.cjenik-stat--teal {
   color: var(--accent-teal);
 }
 
-.cijenik-stat--purple {
+.cjenik-stat--purple {
   color: var(--accent-purple);
 }
 
-.cijenik-stat--accent {
+.cjenik-stat--accent {
   color: #ef6c00;
   font-size: clamp(2rem, 4vw, 2.8rem);
   margin-bottom: 0;
@@ -2599,20 +2599,20 @@ img {
 }
 
 /* Norms — big number + text, side by side */
-.cijenik-norms {
+.cjenik-norms {
   display: flex;
   align-items: center;
   gap: 48px;
 }
 
-.cijenik-norms__row {
+.cjenik-norms__row {
   display: flex;
   align-items: baseline;
   gap: 20px;
   flex: 1;
 }
 
-.cijenik-norms__number {
+.cjenik-norms__number {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -2620,44 +2620,44 @@ img {
   flex-shrink: 0;
 }
 
-.cijenik-norms__number--teal {
+.cjenik-norms__number--teal {
   color: var(--accent-teal);
 }
 
-.cijenik-norms__number--purple {
+.cjenik-norms__number--purple {
   color: var(--accent-purple);
 }
 
-.cijenik-norms__text {
+.cjenik-norms__text {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.cijenik-norms__label {
+.cjenik-norms__label {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-heading);
 }
 
-.cijenik-norms__dir {
+.cjenik-norms__dir {
   font-size: 0.95rem;
   color: var(--text-body);
 }
 
-.cijenik-norms__separator {
+.cjenik-norms__separator {
   width: 1px;
   height: 56px;
   background: var(--border-color);
   flex-shrink: 0;
 }
 
-.cijenik-norms--3 .cijenik-norms__row {
+.cjenik-norms--3 .cjenik-norms__row {
   flex: 1;
   gap: 16px;
 }
 
-.cijenik-norms__icon {
+.cjenik-norms__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2667,70 +2667,70 @@ img {
   flex-shrink: 0;
 }
 
-.cijenik-norms__icon--purple { background: #ede7f6; color: #7c4dff; }
-.cijenik-norms__icon--teal { background: #e0f2f1; color: var(--accent-teal); }
-.cijenik-norms__icon--orange { background: #fff3e0; color: #ef6c00; }
+.cjenik-norms__icon--purple { background: #ede7f6; color: #7c4dff; }
+.cjenik-norms__icon--teal { background: #e0f2f1; color: var(--accent-teal); }
+.cjenik-norms__icon--orange { background: #fff3e0; color: #ef6c00; }
 
 @media (max-width: 768px) {
-  .cijenik-norms--3 {
+  .cjenik-norms--3 {
     flex-direction: column;
     gap: 24px;
     align-items: flex-start;
   }
 
-  .cijenik-norms--3 .cijenik-norms__separator {
+  .cjenik-norms--3 .cjenik-norms__separator {
     width: 100%;
     height: 1px;
   }
 }
 
 @media (max-width: 640px) {
-  .cijenik-norms {
+  .cjenik-norms {
     flex-direction: column;
     gap: 24px;
     align-items: flex-start;
   }
 
-  .cijenik-norms__separator {
+  .cjenik-norms__separator {
     width: 100%;
     height: 1px;
   }
 }
 
 /* Factors sticky-scroll layout */
-.cijenik-factors__layout {
+.cjenik-factors__layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: start;
 }
 
-.cijenik-factors__left {
+.cjenik-factors__left {
   position: sticky;
   top: 120px;
 }
 
-.cijenik-factors__right {
+.cjenik-factors__right {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 @media (max-width: 768px) {
-  .cijenik-factors__layout {
+  .cjenik-factors__layout {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
-  .cijenik-factors__left {
+  .cjenik-factors__left {
     position: static;
   }
 
-  .cijenik-factors__right {
+  .cjenik-factors__right {
     gap: 0;
   }
 
-  .cijenik-factors__right .usluge-card {
+  .cjenik-factors__right .usluge-card {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2744,40 +2744,40 @@ img {
     transform: none;
   }
 
-  .cijenik-factors__right .usluge-card:last-child {
+  .cjenik-factors__right .usluge-card:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
 
-  .cijenik-factors__right .usluge-card:hover {
+  .cjenik-factors__right .usluge-card:hover {
     border-color: transparent;
     box-shadow: none;
     transform: none;
   }
 
-  .cijenik-factors__right .usluge-card__icon {
+  .cjenik-factors__right .usluge-card__icon {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
   }
 
-  .cijenik-factors__right .usluge-card__icon svg {
+  .cjenik-factors__right .usluge-card__icon svg {
     display: none;
   }
 
-  .cijenik-factors__right .usluge-card__title {
+  .cjenik-factors__right .usluge-card__title {
     margin-bottom: 0;
     font-size: 0.95rem;
     font-weight: 500;
   }
 
-  .cijenik-factors__right .usluge-card__desc {
+  .cjenik-factors__right .usluge-card__desc {
     display: none;
   }
 }
 
-.cijenik-highlight {
+.cjenik-highlight {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-left: 4px solid #ef6c00;
@@ -2785,51 +2785,51 @@ img {
   padding: 36px 32px;
 }
 
-.cijenik-highlight__header {
+.cjenik-highlight__header {
   display: flex;
   align-items: flex-start;
   gap: 24px;
   margin-bottom: 28px;
 }
 
-.cijenik-highlight__list {
+.cjenik-highlight__list {
   padding-top: 4px;
 }
 
 @media (max-width: 768px) {
-  .cijenik-highlight {
+  .cjenik-highlight {
     padding: 28px 20px;
   }
 
-  .cijenik-highlight__header {
+  .cjenik-highlight__header {
     flex-direction: column;
     gap: 12px;
   }
 }
 
 /* Lektura / Korektura — zigzag layout */
-.cijenik-zigzag {
+.cjenik-zigzag {
   display: flex;
   flex-direction: column;
   gap: 48px;
 }
 
-.cijenik-zigzag__item {
+.cjenik-zigzag__item {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
 }
 
-.cijenik-zigzag__item--reverse {
+.cjenik-zigzag__item--reverse {
   direction: rtl;
 }
 
-.cijenik-zigzag__item--reverse > * {
+.cjenik-zigzag__item--reverse > * {
   direction: ltr;
 }
 
-.cijenik-zigzag__image {
+.cjenik-zigzag__image {
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-lg);
@@ -2839,30 +2839,30 @@ img {
   color: #fff;
 }
 
-.cijenik-zigzag__image--purple {
+.cjenik-zigzag__image--purple {
   background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
 }
 
-.cijenik-zigzag__image--teal {
+.cjenik-zigzag__image--teal {
   background: linear-gradient(135deg, var(--accent-teal) 0%, #0d9488 100%);
 }
 
-.cijenik-zigzag__title {
+.cjenik-zigzag__title {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 700;
   color: var(--text-heading);
   margin-bottom: 12px;
 }
 
-.cijenik-zigzag__desc {
+.cjenik-zigzag__desc {
   font-size: 1rem;
   color: var(--text-body);
   line-height: 1.7;
 }
 
 @media (max-width: 768px) {
-  .cijenik-zigzag__item,
-  .cijenik-zigzag__item--reverse {
+  .cjenik-zigzag__item,
+  .cjenik-zigzag__item--reverse {
     grid-template-columns: 1fr;
     gap: 24px;
     direction: ltr;
@@ -2870,11 +2870,11 @@ img {
 }
 
 @media (max-width: 600px) {
-  .cijenik-zigzag__image {
+  .cjenik-zigzag__image {
     display: none;
   }
 
-  .cijenik-zigzag {
+  .cjenik-zigzag {
     gap: 32px;
   }
 }
@@ -3921,7 +3921,7 @@ img {
   }
 }
 
-/* ===== QUOTE SECTION (Cijenik) ===== */
+/* ===== QUOTE SECTION (Cjenik) ===== */
 .quote-section {
   background: linear-gradient(135deg, #7c4dff 0%, #4c1d95 100%);
   padding: 88px 0 96px;
@@ -4204,7 +4204,7 @@ img {
   }
 }
 
-/* ===== MOBILE ACCORDION — Cijenik page ===== */
+/* ===== MOBILE ACCORDION — Cjenik page ===== */
 
 /* Flex row: title + chevron button */
 .accordion-header {
