@@ -1881,7 +1881,7 @@ img {
   width: 100%;
   height: 460px;
   object-fit: cover;
-  object-position: bottom;
+  object-position: center;
   border-radius: 20px;
   display: block;
 }
@@ -3549,14 +3549,25 @@ img {
 }
 
 .price-cta__title {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
   font-style: italic;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.2;
   color: #fff;
-  margin-bottom: 16px;
+  width: fit-content;
+  margin: 0 auto 20px;
+}
+
+.price-cta__title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  margin: 12px 0 0;
 }
 
 .price-cta__desc {
@@ -3649,8 +3660,24 @@ img {
 }
 
 @keyframes ctaFormIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+/* --- Scroll-triggered block reveal (same feel as section title words) --- */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
+}
+
+.section-reveal.is-visible {
+  animation: wordReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.section-reveal--delay.is-visible {
+  animation-delay: 0.18s;
 }
 
 .price-cta__form-wrap {
@@ -3658,7 +3685,7 @@ img {
   padding-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   text-align: left;
-  animation: ctaFormIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: ctaFormIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .price-cta__form {
@@ -3921,14 +3948,24 @@ img {
 }
 
 .quote-section__title {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
   font-style: italic;
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.quote-section__title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  margin-top: 12px;
 }
 
 .quote-section__desc {
@@ -4164,5 +4201,82 @@ img {
 @media (max-width: 768px) {
   .footer__nav {
     display: none;
+  }
+}
+
+/* ===== MOBILE ACCORDION — Cijenik page ===== */
+
+/* Flex row: title + chevron button */
+.accordion-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Button hidden on desktop */
+.accordion-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Tighten section padding so collapsed sections feel compact */
+  .accordion-section {
+    padding: 28px 0;
+  }
+
+  /* Show the chevron toggle button */
+  .accordion-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-body);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-top: 2px;
+  }
+
+  .accordion-toggle svg {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .accordion-section--open .accordion-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .accordion-toggle:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+  }
+
+  /* Section title: remove bottom margin when collapsed */
+  .accordion-section .usluge-section__title {
+    margin-bottom: 0;
+  }
+
+  /* Collapsible body */
+  .accordion-body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease;
+  }
+
+  .accordion-section--open .accordion-body {
+    opacity: 1;
+    /* max-height set by JS to exact scrollHeight */
+  }
+
+  /* Restore title margin once open */
+  .accordion-section--open .usluge-section__title {
+    margin-bottom: 20px;
   }
 }

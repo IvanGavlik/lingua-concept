@@ -180,6 +180,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ".usluge-hero__title",
     ".usluge-section__title",
     ".page-hero__title",
+    ".quote-section__title",
+    ".price-cta__title",
+    ".kontakt-form-card__title",
   ].join(", "));
 
   // Split each title's text into individual word <span>s
@@ -210,6 +213,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
 
   sectionTitles.forEach((el) => titleObserver.observe(el));
+
+  /* ---------- Section block reveal on scroll (forms, cards) ---------- */
+  const revealEls = document.querySelectorAll(".section-reveal");
+  if (revealEls.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    revealEls.forEach((el) => revealObserver.observe(el));
+  }
 
   /* ---------- Hero illustration: typing + direction switching ---------- */
   const heroSrcFlag  = document.getElementById("heroSrcFlag");
@@ -630,6 +647,69 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  /* ---------- Mobile accordion (Cijenik page) ---------- */
+  (function initCijenikAccordion() {
+    const sections = document.querySelectorAll(".accordion-section");
+    if (!sections.length) return;
+
+    const MOBILE_BP = 768;
+    const chevronSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+    sections.forEach((section) => {
+      const h2 = section.querySelector(".usluge-section__title");
+      const body = section.querySelector(".accordion-body");
+      if (!h2 || !body) return;
+
+      // Wrap h2 in accordion-header and append chevron button
+      const header = document.createElement("div");
+      header.className = "accordion-header";
+      h2.parentNode.insertBefore(header, h2);
+      header.appendChild(h2);
+
+      const btn = document.createElement("button");
+      btn.className = "accordion-toggle";
+      btn.type = "button";
+      btn.setAttribute("aria-expanded", "false");
+      btn.innerHTML = chevronSVG;
+      header.appendChild(btn);
+
+      function openSection() {
+        section.classList.add("accordion-section--open");
+        btn.setAttribute("aria-expanded", "true");
+        body.style.maxHeight = body.scrollHeight + "px";
+      }
+
+      function closeSection() {
+        section.classList.remove("accordion-section--open");
+        btn.setAttribute("aria-expanded", "false");
+        body.style.maxHeight = "0";
+      }
+
+      header.addEventListener("click", () => {
+        if (window.innerWidth > MOBILE_BP) return;
+        section.classList.contains("accordion-section--open")
+          ? closeSection()
+          : openSection();
+      });
+
+      // Reset inline styles when resizing between desktop and mobile
+      function syncState() {
+        if (window.innerWidth > MOBILE_BP) {
+          body.style.maxHeight = "";
+          body.style.opacity = "";
+          section.classList.remove("accordion-section--open");
+          btn.setAttribute("aria-expanded", "false");
+        } else {
+          if (!section.classList.contains("accordion-section--open")) {
+            body.style.maxHeight = "0";
+          }
+        }
+      }
+
+      window.addEventListener("resize", syncState, { passive: true });
+    });
+  })();
 
   /* ---------- Cookie consent banner ---------- */
   const COOKIE_KEY = "lc_cookie_consent";

@@ -1,9 +1,9 @@
-- mobile friendly
+- mobile friendly Cijenik page 
 	- navigation section set viewport (all devices resolution 1200 x 800... and oters)
 	- investigate device/monitor resoulutons most common
 	- left
 
-
+- forms title should have the same style and animnations as sections title (except colors)
 
 s njom dogovoriti
 - poslati ugovor i naplata
@@ -14,49 +14,11 @@ s njom dogovoriti
 	-> dodatno naplatiti  
 
 
-
-  Index
-
-  #: 3
-  Issue: Phone & email in "Kontakt podatci" are plain text — not tappable on phones (unlike kontakt.html which has tel:
-    and mailto:)
-  Fix: Wrap in links
-  ────────────────────────────────────────
-  #: 4
-  Issue: Hero illustration: at ≤480px two stacked doc-cards + lang badges is very tall (400px+). The interactive
-    illustration loses a lot of its appeal on such a narrow screen
-  Fix: Hide hero__illus-wrap entirely on ≤480px — the CTA buttons are enough
-
-  O nama
-
-  #: 5
-  Issue: "Naše vrijednosti" — 5 large color cards (min-height 240px each) in 2-column layout at ≤768px, single-column at
-
-    ≤480px. That's potentially 1200px+ of scrolling just for this section
-  Fix: Replace with horizontal scroll like "Što radimo" on mobile — the cards are already a fixed flex layout, just
-    change overflow-x: auto; flex-wrap: nowrap
-  ────────────────────────────────────────
-  #: 6
-  Issue: "Što radimo" horizontal scroll — the 9 cards (flex: 0 0 280px) on mobile use a 280px card width, which feels
-    cramped at 280px on a 390px screen with padding
-  Fix: Reduce card width to 240px on mobile
-
-  Cijenik
-
-  #: 7
-  Issue: Bug (from above): .usluge-grid--2 compact-list hides descriptions on "Obračun prijevoda"
-  Fix: Add a usluge-grid--intelekt class to scope the rule only to Intelektualne section on usluge.html
-  ────────────────────────────────────────
-  #: 8
-  Issue: "Cijene lekture i korekture" zigzag — decorative animated CSS illustrations (lektura-doc, korektura-doc) take a
-
-    full 16:10 aspect-ratio block on mobile when stacked. They're aria-hidden — purely decorative
-  Fix: Hide .cijenik-zigzag__image on ≤600px, making each zigzag item just its text
-
-
-  ---
-  Which of these would you like me to implement? I'd suggest starting with:
-  - #7 (bug fix) — immediate, required
-  - #1, 2, 3 — quick CSS/HTML wins
-  - #4, 5, 8 — component-level improvements
-  - #6 — minor polish
+ Open the page in browser DevTools and test at these sizes:
+  - 320px — smallest Android/iPhone SE
+  - 375px — iPhone 6/7/8/SE 2nd gen
+  - 390px — iPhone 14
+  - 768px — tablet / DevTools tablet preset
+  - 1024px — small laptop / iPad landscape
+  - 1366px — most common Windows laptop
+  - 1920px — full HD monitor
