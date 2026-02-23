@@ -1,4 +1,6 @@
 - email i korisnik odbije poruku da je zahtjev zaprimljen
+- ubaciti potpisani ugovor na google drive
+- azurirati linkove na drustvene mreze
 
 
 s njom dogovoriti
