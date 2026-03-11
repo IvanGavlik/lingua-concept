@@ -62,44 +62,30 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Perks horizontal drag slider ---------- */
   const slider = document.querySelector(".about-perks__scroll");
   if (slider) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener("mousedown", (e) => {
-      isDown = true;
-      slider.classList.add("is-dragging");
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
+    slider.addEventListener("click", (e) => {
+      const card = e.target.closest(".testimonial-card");
+      if (!card) return;
+      card.classList.toggle("is-expanded");
     });
 
-    slider.addEventListener("mouseleave", () => {
-      isDown = false;
-      slider.classList.remove("is-dragging");
-    });
-
-    slider.addEventListener("mouseup", () => {
-      isDown = false;
-      slider.classList.remove("is-dragging");
-    });
-
-    slider.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    /* Auto-scroll */
+    /* Auto-scroll (infinite seamless loop) */
     const scrollSpeed = 1;
     let paused = false;
+
+    // Clone all cards and append — captures original width before cloning
+    const origScrollWidth = slider.scrollWidth;
+    Array.from(slider.children).forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      slider.appendChild(clone);
+    });
 
     function autoScroll() {
       if (!paused) {
         slider.scrollLeft += scrollSpeed;
-        if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
-          slider.scrollLeft = 0;
+        // When we've scrolled one full original set, silently jump back
+        if (slider.scrollLeft >= origScrollWidth) {
+          slider.scrollLeft -= origScrollWidth;
         }
       }
       requestAnimationFrame(autoScroll);
@@ -113,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (sliderWrapper) {
       sliderWrapper.addEventListener("mouseenter", () => { paused = true; });
-      sliderWrapper.addEventListener("mouseleave", () => { paused = false; isDown = false; slider.classList.remove("is-dragging"); });
+      sliderWrapper.addEventListener("mouseleave", () => { paused = false; });
     }
     slider.addEventListener("touchstart", () => { paused = true; }, { passive: true });
     slider.addEventListener("touchend", () => { paused = false; });
