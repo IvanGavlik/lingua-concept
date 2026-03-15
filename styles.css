@@ -1589,13 +1589,23 @@ img {
   padding: 32px 0;
 }
 
+.about-perks--testimonials .about-perks__scroll {
+  align-items: flex-start;
+}
+
 .about-perks--testimonials .about-perks__card {
   flex: 0 0 min(calc((100vw - 48px) / 2.5 - 10px), 427px);
 }
 
 @media (max-width: 768px) {
+  .about-perks--testimonials .about-perks__scroll {
+    scroll-snap-type: x mandatory;
+    padding-inline: 16px;
+  }
+
   .about-perks--testimonials .about-perks__card {
-    flex: 0 0 240px;
+    flex: 0 0 calc(100vw - 64px);
+    scroll-snap-align: start;
   }
 }
 
@@ -1661,7 +1671,7 @@ img {
   left: 0;
   right: 0;
   height: 28px;
-  background: linear-gradient(transparent, var(--bg-primary));
+  background: linear-gradient(transparent, var(--bg-card));
   pointer-events: none;
   transition: opacity 0.2s ease;
 }

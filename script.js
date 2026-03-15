@@ -63,46 +63,53 @@ document.addEventListener("DOMContentLoaded", () => {
   const slider = document.querySelector(".about-perks__scroll");
   if (slider) {
     slider.addEventListener("click", (e) => {
-      const card = e.target.closest(".testimonial-card");
+      const toggle = e.target.closest(".testimonial-card__toggle");
+      if (!toggle) return;
+      const card = toggle.closest(".testimonial-card");
       if (!card) return;
-      card.classList.toggle("is-expanded");
+      const isOpen = card.classList.contains("is-expanded");
+      slider.querySelectorAll(".testimonial-card.is-expanded").forEach(other => {
+        other.classList.remove("is-expanded");
+      });
+      if (!isOpen) card.classList.add("is-expanded");
     });
 
-    /* Auto-scroll (infinite seamless loop) */
-    const scrollSpeed = 1;
-    let paused = false;
+    /* Auto-scroll (infinite seamless loop) — desktop only */
+    if (window.innerWidth > 768) {
+      const scrollSpeed = 1;
+      let paused = false;
 
-    // Clone all cards and append — captures original width before cloning
-    const origScrollWidth = slider.scrollWidth;
-    Array.from(slider.children).forEach(card => {
-      const clone = card.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      slider.appendChild(clone);
-    });
+      // Clone all cards and append — captures original width before cloning
+      const origScrollWidth = slider.scrollWidth;
+      Array.from(slider.children).forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        slider.appendChild(clone);
+      });
 
-    function autoScroll() {
-      if (!paused) {
-        slider.scrollLeft += scrollSpeed;
-        // When we've scrolled one full original set, silently jump back
-        if (slider.scrollLeft >= origScrollWidth) {
-          slider.scrollLeft -= origScrollWidth;
+      function autoScroll() {
+        if (!paused) {
+          slider.scrollLeft += scrollSpeed;
+          // When we've scrolled one full original set, silently jump back
+          if (slider.scrollLeft >= origScrollWidth) {
+            slider.scrollLeft -= origScrollWidth;
+          }
         }
+        requestAnimationFrame(autoScroll);
       }
+
       requestAnimationFrame(autoScroll);
+
+      // Pause on hover / drag / touch — use the whole slider wrapper
+      const sliderWrapper = slider.closest(".about-perks__slider");
+
+      if (sliderWrapper) {
+        sliderWrapper.addEventListener("mouseenter", () => { paused = true; });
+        sliderWrapper.addEventListener("mouseleave", () => { paused = false; });
+      }
+      slider.addEventListener("touchstart", () => { paused = true; }, { passive: true });
+      slider.addEventListener("touchend", () => { paused = false; });
     }
-
-    requestAnimationFrame(autoScroll);
-
-    // Pause on hover / drag / touch — use the whole slider wrapper
-    const sliderWrapper = slider.closest(".about-perks__slider");
-    const perksSection = slider.closest(".about-perks");
-
-    if (sliderWrapper) {
-      sliderWrapper.addEventListener("mouseenter", () => { paused = true; });
-      sliderWrapper.addEventListener("mouseleave", () => { paused = false; });
-    }
-    slider.addEventListener("touchstart", () => { paused = true; }, { passive: true });
-    slider.addEventListener("touchend", () => { paused = false; });
 
     /* Arrow buttons — manual smooth scroll */
     const leftBtn = document.querySelector(".about-perks__arrow--left");
